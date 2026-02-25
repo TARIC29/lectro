@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Envoyez vos recommandés 100% électroniques, conformes eIDAS en quelques clics."
+    />
+    <title>Spécialiste du recommandé électronique depuis 2012 - LetReco</title>
+    <style>
+      :root {
+        --green: #339933;
+        --text: #333333;
+        --muted: #44596b;
+        --bg: #ffffff;
+        --light: #f7f9fc;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        line-height: 1.65;
+      }
+
+      .container {
+        width: min(1180px, 92vw);
+        margin: 0 auto;
+      }
+
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: #fff;
+        border-bottom: 1px solid #eceff4;
+      }
+
+      .header-inner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 0;
+      }
+
+      .logo {
+        max-width: 210px;
+        height: auto;
+        display: block;
+      }
+
+      .hero {
+        background: var(--light);
+        padding: 58px 0 42px;
+        text-align: center;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(1.95rem, 4vw, 3rem);
+        line-height: 1.2;
+        color: #292929;
+      }
+
+      .accent {
+        color: var(--green);
+      }
+
+      .lead {
+        margin: 22px auto 0;
+        max-width: 980px;
+        font-size: clamp(1.04rem, 1.6vw, 1.25rem);
+      }
+
+      .profiles {
+        text-align: center;
+        padding: 24px 0 10px;
+      }
+
+      .profiles h2 {
+        margin: 0 0 16px;
+        font-size: clamp(1.15rem, 2.1vw, 1.9rem);
+        line-height: 1.25;
+      }
+
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+      }
+
+      .btn {
+        display: inline-block;
+        min-width: 210px;
+        text-align: center;
+        padding: 12px 18px;
+        border-radius: 7px;
+        border: 2px solid var(--green);
+        font-weight: 700;
+        text-decoration: none;
+        transition: 0.2s ease;
+      }
+
+      .btn-primary {
+        background: var(--green);
+        color: #fff;
+      }
+
+      .btn-ghost {
+        color: var(--green);
+        background: #fff;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .clients {
+        text-align: center;
+        padding: 34px 0 20px;
+      }
+
+      .clients p {
+        margin: 0;
+        font-size: clamp(1.2rem, 2.1vw, 1.95rem);
+        font-weight: 700;
+      }
+
+      .section {
+        padding: 24px 0;
+      }
+
+      .card {
+        border: 1px solid #ecf0f5;
+        border-radius: 16px;
+        padding: clamp(18px, 3vw, 32px);
+        background: #fff;
+      }
+
+      .card h3 {
+        margin: 0 0 8px;
+        font-size: clamp(1.3rem, 2.2vw, 1.9rem);
+      }
+
+      .card p {
+        margin: 0 0 12px;
+      }
+
+      .about-list {
+        margin: 0;
+        padding-left: 20px;
+      }
+
+      .about-list li + li {
+        margin-top: 8px;
+      }
+
+      .editor {
+        margin-top: 20px;
+        padding: 18px;
+        background: #f8fbf8;
+        border-left: 4px solid var(--green);
+      }
+
+      .footer {
+        margin-top: 26px;
+        background: #263238;
+        color: #d9dee1;
+      }
+
+      .footer-inner {
+        padding: 28px 0;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 14px;
+      }
+
+      .footer a,
+      .footer p {
+        margin: 0 0 6px;
+        color: #d9dee1;
+        text-decoration: none;
+        font-size: 0.93rem;
+      }
+
+      .footer-title {
+        margin: 0 0 10px;
+        color: #fff;
+        font-size: 1rem;
+      }
+
+      .legal {
+        border-top: 1px solid rgba(255, 255, 255, 0.18);
+        margin-top: 10px;
+        padding-top: 12px;
+        font-size: 0.85rem;
+      }
+
+      @media (max-width: 680px) {
+        .btn {
+          width: 100%;
+          min-width: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header-inner">
+        <img
+          class="logo"
+          src="https://www.letreco.fr/wp-content/uploads/2025/07/Logo_LetReco_5000pixels.png"
+          alt="LetReco"
+        />
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <h1><span class="accent">LetReco</span>, le spécialiste du recommandé électronique</h1>
+          <p class="lead">
+            Envoyez vos <strong>recommandés 100% électroniques</strong>, conformes <strong>eIDAS</strong>
+            en quelques clics. Grâce à notre plateforme sécurisée, vous archivez et suivez vos
+            recommandés électroniques à tout moment.
+          </p>
+        </div>
+      </section>
+
+      <section class="profiles">
+        <div class="container">
+          <h2>Sélectionnez votre profil et accédez à un espace adapté à vos besoins :</h2>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#">Je suis un professionnel</a>
+            <a class="btn btn-primary" href="#">Je suis un particulier</a>
+            <a class="btn btn-ghost" href="#">J’ai reçu une LetReco</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="clients">
+        <div class="container">
+          <p>+ 5000 clients utilisent déjà LetReco</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container card">
+          <h3>A propos de LetReco</h3>
+          <p>Tout savoir sur le recommandé électronique LetReco</p>
+          <ul class="about-list">
+            <li>Pourquoi choisir le courrier recommandé électronique avec LetReco ?</li>
+            <li>Deux niveaux de courrier électronique en recommandé : LetReco Simple ou LetReco Qualifiée</li>
+            <li>Un recommandé numérique rapide et économique</li>
+            <li>LRE : des preuves fiables, archivées et facilement consultables</li>
+            <li>Recommandé électronique par mail : une solution aussi pensée pour les particuliers</li>
+            <li>LetReco, une marque d’Equisign : expertise, conformité et souveraineté</li>
+          </ul>
+
+          <div class="editor">
+            <p>
+              LetReco est une solution d’Equisign, un éditeur de logiciels spécialisé dans la
+              sécurité digitale.
+            </p>
+            <p>
+              Tour Opus 12, 77 Esplanade du Général de Gaulle 92081 Paris La Défense Cedex
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div class="footer-grid">
+          <div>
+            <h4 class="footer-title">Notre société</h4>
+          </div>
+          <div>
+            <h4 class="footer-title">Recommandé</h4>
+            <p><a href="#">Recommandé pour professionnels</a></p>
+            <p><a href="#">Recommandé pour particuliers</a></p>
+          </div>
+          <div>
+            <h4 class="footer-title">Aide</h4>
+            <p><a href="#">FAQ expéditeur</a></p>
+            <p><a href="#">Vérifier la légitimité d’un email</a></p>
+            <p><a href="#">J’ai reçu une LetReco</a></p>
+            <p><a href="#">Contactez-nous</a></p>
+          </div>
+          <div>
+            <h4 class="footer-title">Ressources</h4>
+            <p><a href="#">À propos</a></p>
+            <p><a href="#">Blog</a></p>
+            <p><a href="#">Documentation</a></p>
+          </div>
+        </div>
+        <p class="legal">
+          © EQUISIGN 2025-2030 — <a href="#">Mentions légales</a> —
+          <a href="#">Politique cookies</a> —
+          <a href="#">Déclaration de confidentialité</a> —
+          <a href="#">Documentation</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

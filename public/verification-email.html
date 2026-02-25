@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Vérifiez la légitimité d’un recommandé électronique LetReco simple en saisissant l’email destinataire et la référence courrier."
+    />
+    <title>Vérification d’email LetReco | Légitimité d’un recommandé électronique</title>
+    <style>
+      :root {
+        --green: #339933;
+        --green-dark: #277a27;
+        --ink: #2b2b2c;
+        --muted: #526170;
+        --bg: #f4f8fc;
+        --card: #ffffff;
+        --line: #dfe7f0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1160px, 92vw);
+        margin: 0 auto;
+      }
+
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        border-bottom: 1px solid var(--line);
+        background: #fff;
+      }
+
+      .header-inner {
+        min-height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.2rem;
+        font-weight: 800;
+        color: var(--green-dark);
+      }
+
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--green);
+      }
+
+      .menu {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .menu a {
+        font-size: 0.95rem;
+        color: #3f4d58;
+        font-weight: 600;
+      }
+
+      .hero {
+        border-bottom: 1px solid var(--line);
+        background: linear-gradient(180deg, #f1f8f1 0%, #f8fbff 100%);
+      }
+
+      .hero-inner {
+        padding: 38px 0;
+      }
+
+      h1 {
+        margin: 0;
+        line-height: 1.22;
+        font-size: clamp(1.7rem, 3.2vw, 2.5rem);
+      }
+
+      .lead {
+        margin-top: 12px;
+        color: var(--muted);
+        max-width: 920px;
+      }
+
+      main {
+        padding: 28px 0 40px;
+      }
+
+      .form-card,
+      .content-card,
+      .company,
+      .footer {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+      }
+
+      .form-card {
+        padding: 22px;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      label {
+        font-size: 0.93rem;
+        font-weight: 700;
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        border: 1px solid #ced9e5;
+        border-radius: 8px;
+        padding: 11px 12px;
+        font: inherit;
+        background: #fff;
+      }
+
+      .full {
+        grid-column: 1 / -1;
+      }
+
+      .hint {
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .checks {
+        margin-top: 12px;
+        border-top: 1px solid var(--line);
+        padding-top: 12px;
+      }
+
+      .check {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .btn {
+        border: 1px solid var(--green);
+        background: var(--green);
+        color: #fff;
+        border-radius: 8px;
+        font: inherit;
+        font-weight: 700;
+        padding: 11px 16px;
+        cursor: pointer;
+      }
+
+      .content-card {
+        margin-top: 18px;
+        padding: 22px;
+      }
+
+      h2 {
+        margin: 0 0 8px;
+        font-size: 1.35rem;
+      }
+
+      h3 {
+        margin: 16px 0 8px;
+        font-size: 1.05rem;
+      }
+
+      p {
+        margin: 0 0 10px;
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 20px;
+      }
+
+      li + li {
+        margin-top: 8px;
+      }
+
+      .step {
+        margin-top: 12px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 12px;
+        background: #fbfdff;
+      }
+
+      .company,
+      .footer {
+        margin-top: 18px;
+        padding: 20px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px 26px;
+      }
+
+      .foot-note {
+        margin-top: 14px;
+        border-top: 1px solid var(--line);
+        padding-top: 12px;
+        color: #566674;
+      }
+
+      @media (max-width: 820px) {
+        .header-inner {
+          padding: 8px 0;
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .form-grid,
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="Accueil LetReco">
+          <span class="dot" aria-hidden="true"></span>
+          <span>LetReco</span>
+        </a>
+        <nav class="menu" aria-label="Navigation principale">
+          <a href="index.html">Offres LetReco</a>
+          <a href="#">Secteurs d’activité</a>
+          <a href="#">Intégration API</a>
+          <a href="#">Tarifs</a>
+          <a href="#">Blog</a>
+          <a href="#">À propos</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="container hero-inner">
+        <h1>
+          Mail LetReco – Vérification de la légitimité d’un recommandé électronique
+          (LetReco simple)
+        </h1>
+        <p class="lead">
+          Assurez-vous que le recommandé électronique ou le mail LetReco que vous
+          avez reçu provient bien de nos services.
+        </p>
+      </div>
+    </section>
+
+    <main>
+      <div class="container">
+        <section class="form-card" aria-labelledby="form-title">
+          <h2 id="form-title">Vérifier un email utilisateur</h2>
+          <form>
+            <div class="form-grid">
+              <div>
+                <label for="email">Email du destinataire</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value="monadresse@letreco.fr"
+                  required
+                />
+              </div>
+              <div>
+                <label for="reference">Référence de votre courrier recommandé</label>
+                <input
+                  id="reference"
+                  name="reference"
+                  type="text"
+                  placeholder="exemple : NEKQXWYT"
+                  maxlength="8"
+                  required
+                />
+              </div>
+              <div class="full checks">
+                <label class="check" for="robot">
+                  <input id="robot" type="checkbox" required />
+                  <span>Je ne suis pas un robot</span>
+                </label>
+                <label class="check" for="consentement">
+                  <input id="consentement" type="checkbox" required />
+                  <span
+                    >En soumettant ce formulaire, j’accepte que les informations
+                    saisies soient traitées dans le cadre de la vérification d’un
+                    recommandé électronique LetReco. Ces données ne sont pas
+                    conservées. Pour plus d’informations, consultez notre Politique
+                    de confidentialité.</span
+                  >
+                </label>
+                <button class="btn" type="submit">Lancer la vérification</button>
+                <p class="hint">
+                  Attention : en cas de doute (spam, phishing ou virus), n’ouvrez pas
+                  les liens ni pièces jointes avant vérification.
+                </p>
+              </div>
+            </div>
+          </form>
+        </section>
+
+        <section class="content-card">
+          <h2>
+            Comment vérifier la légitimité d’un envoi LetReco Simple ? Mail douteux
+            ou courrier légitime ?
+          </h2>
+          <p>
+            Chez LetReco, nos mails sont pensés pour garantir des échanges
+            électroniques sécurisés. Notre outil de vérification vous permet
+            d’authentifier vos courriers recommandés en toute simplicité.
+          </p>
+          <p>
+            Cette option n’est malheureusement pas disponible pour les courriers
+            LetReco qualifiés.
+          </p>
+
+          <div class="step">
+            <h3>1) Accédez à l’outil de vérification</h3>
+            <p>Accessible en haut de cette page.</p>
+          </div>
+
+          <div class="step">
+            <h3>2) Remplissez les informations nécessaires</h3>
+            <ul>
+              <li>Saisissez l’adresse email ayant reçu la notification LetReco.</li>
+              <li>
+                Copiez la référence de votre courrier (8 caractères), visible dans
+                l’email de notification.
+              </li>
+            </ul>
+            <p class="hint">
+              La référence de votre courrier recommandé est : XXXXXXXX.
+            </p>
+          </div>
+
+          <div class="step">
+            <h3>3) Confirmez votre consentement</h3>
+            <p>
+              Cochez les cases requises puis cliquez sur le bouton de vérification.
+            </p>
+          </div>
+
+          <div class="step">
+            <h3>4) Analysez les résultats</h3>
+            <ul>
+              <li>
+                <strong>Envoi authentique :</strong> un message de confirmation
+                détaillé s’affiche.
+              </li>
+              <li>
+                <strong>Envoi suspect :</strong> n’ouvrez pas les pièces jointes et
+                contactez immédiatement le support.
+              </li>
+            </ul>
+          </div>
+
+          <h2 style="margin-top: 20px">
+            Pourquoi la vérification de légitimité et d’honorabilité est-elle
+            essentielle ?
+          </h2>
+          <ul>
+            <li>
+              <strong>Contre le phishing et les fraudes :</strong> certains messages
+              tentent d’usurper l’identité LetReco.
+            </li>
+            <li>
+              <strong>Pour la confiance :</strong> une vérification rapide rassure vos
+              interlocuteurs sur la fiabilité des documents.
+            </li>
+            <li>
+              <strong>Pour la valeur juridique :</strong> certifier l’origine de
+              l’envoi réduit les risques liés aux documents falsifiés.
+            </li>
+          </ul>
+
+          <h3>Nos garanties de sécurité</h3>
+          <ul>
+            <li>Chiffrement des données pour protéger vos communications.</li>
+            <li>Certification électronique conforme aux normes en vigueur.</li>
+            <li>Suivi et traçabilité de chaque envoi.</li>
+          </ul>
+
+          <p style="margin-top: 12px">
+            Assurez-vous que le recommandé provient bien des services officiels de
+            LetReco. En cas de doute, consultez la FAQ ou contactez notre support.
+          </p>
+        </section>
+
+        <section class="company">
+          <p>
+            LetReco est une solution d’Equisign, un éditeur de logiciels spécialisé
+            dans la sécurité digitale.<br />
+            Tour Opus 12, 77 Esplanade du Général de Gaulle 92081 Paris La Défense
+            Cedex
+          </p>
+        </section>
+
+        <footer class="footer">
+          <div class="footer-grid">
+            <p>Notre société</p>
+            <p>Recommandé pour professionnels</p>
+            <p>Recommandé pour particuliers</p>
+            <p>À propos</p>
+            <p>Blog</p>
+            <p>Aide</p>
+            <p>FAQ expéditeur</p>
+            <p>Vérifier la légitimité d’un email</p>
+            <p>J’ai reçu une LetReco</p>
+            <p>Contactez-nous</p>
+          </div>
+          <div class="foot-note">
+            © EQUISIGN 2025-2030 – Mentions légales – Politique cookies –
+            Déclaration de confidentialité – Documentation technique
+          </div>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>
