@@ -3,15 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LetReco — Recommandé électronique</title>
+    <title>LetReco | Recommandé électronique eIDAS</title>
     <style>
       :root {
-        --bg: #f7f8fc;
-        --card: #ffffff;
-        --primary: #1d4ed8;
-        --secondary: #0f172a;
-        --muted: #475569;
-        --border: #e2e8f0;
+        --bg: #f3f6fb;
+        --navy: #0f2046;
+        --primary: #0c55d8;
+        --primary-2: #1666f0;
+        --text: #0f172a;
+        --muted: #5b667a;
+        --line: #dfe5f1;
+        --white: #ffffff;
       }
 
       * {
@@ -20,196 +22,335 @@
 
       body {
         margin: 0;
-        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        color: var(--secondary);
+        font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         background: var(--bg);
+        color: var(--text);
         line-height: 1.55;
       }
 
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
       .container {
-        width: min(1100px, 92vw);
+        width: min(1160px, 92vw);
         margin: 0 auto;
       }
 
-      header {
-        background: linear-gradient(135deg, #0f172a, #1e3a8a 55%, #2563eb);
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        background: rgba(243, 246, 251, 0.92);
+        backdrop-filter: blur(6px);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 74px;
+        gap: 20px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 800;
+        color: var(--navy);
+      }
+
+      .brand-dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: linear-gradient(130deg, #1d4ed8, #60a5fa);
+        box-shadow: 0 0 0 6px rgba(12, 85, 216, 0.1);
+      }
+
+      .menu {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 8px;
+      }
+
+      .menu a {
+        color: #1f2a44;
+        font-size: 0.92rem;
+        font-weight: 600;
+        padding: 8px 12px;
+        border-radius: 999px;
+      }
+
+      .menu a:hover {
+        background: #e8eefb;
+      }
+
+      .cta {
+        background: var(--primary);
+        color: #fff !important;
+      }
+
+      .hero-wrap {
+        padding: 34px 0 18px;
+      }
+
+      .hero {
+        border-radius: 28px;
+        overflow: hidden;
+        background: radial-gradient(circle at 10% 0%, #2f6fe5 0%, transparent 42%),
+          radial-gradient(circle at 90% 100%, #1746a7 0%, transparent 40%),
+          linear-gradient(130deg, #102655 0%, #10367f 40%, #0c55d8 100%);
         color: #fff;
-        padding: 72px 0 60px;
+        padding: clamp(28px, 6vw, 70px);
+        box-shadow: 0 20px 44px rgba(7, 24, 57, 0.24);
       }
 
       .hero h1 {
-        margin: 0 0 16px;
-        font-size: clamp(1.8rem, 4vw, 3rem);
-        line-height: 1.2;
+        margin: 0;
+        max-width: 760px;
+        font-size: clamp(2rem, 4.2vw, 3.3rem);
+        line-height: 1.14;
       }
 
       .hero p {
-        margin: 0;
-        max-width: 800px;
-        font-size: 1.05rem;
-        color: #dbeafe;
+        max-width: 760px;
+        margin: 18px 0 0;
+        color: #e7efff;
+        font-size: clamp(1rem, 1.9vw, 1.15rem);
       }
 
-      .profiles {
+      .hero-actions {
         margin-top: 28px;
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
       }
 
-      .pill {
-        background: rgba(255, 255, 255, 0.12);
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        color: #fff;
-        padding: 10px 16px;
-        border-radius: 999px;
-        font-weight: 600;
-      }
-
-      main {
-        padding: 34px 0 54px;
-      }
-
-      section {
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        padding: 26px;
-        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
-      }
-
-      section + section {
-        margin-top: 18px;
-      }
-
-      h2 {
-        margin: 0 0 14px;
-        font-size: 1.45rem;
-      }
-
-      .kpi {
-        font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+      .btn {
+        padding: 12px 18px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.35);
         font-weight: 700;
+      }
+
+      .btn.primary {
+        background: #fff;
+        color: #0d3f9d;
+        border-color: transparent;
+      }
+
+      .stats {
+        display: grid;
+        gap: 14px;
+        margin: 22px 0 0;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+
+      .stat {
+        background: var(--white);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 18px;
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 1.45rem;
         color: var(--primary);
+      }
+
+      .section {
+        margin: 20px 0 0;
+        background: var(--white);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: clamp(20px, 4vw, 34px);
+      }
+
+      .section h2 {
+        margin: 0 0 14px;
+        font-size: clamp(1.38rem, 3vw, 2rem);
+        color: var(--navy);
+      }
+
+      .split {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 22px;
       }
 
       ul {
         margin: 0;
-        padding-left: 18px;
+        padding-left: 20px;
       }
 
       li + li {
-        margin-top: 8px;
+        margin-top: 9px;
       }
 
-      footer {
-        margin-top: 22px;
+      .card {
+        border: 1px solid var(--line);
+        background: #f8faff;
+        border-radius: 14px;
+        padding: 16px;
+      }
+
+      .footer {
+        margin: 24px 0 30px;
+        background: #0c1738;
+        color: #d9e4ff;
+        border-radius: 20px;
+        padding: 28px;
       }
 
       .footer-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-        gap: 14px;
+        gap: 16px;
       }
 
-      .footer-card {
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        padding: 14px;
-      }
-
-      .footer-card h3 {
+      .footer h3 {
         margin: 0 0 8px;
-        font-size: 0.95rem;
+        color: #fff;
+        font-size: 0.96rem;
       }
 
-      .footer-card p,
-      .footer-card a {
+      .footer p,
+      .footer a {
         margin: 0;
+        color: #c5d3f6;
         font-size: 0.9rem;
-        color: var(--muted);
-        text-decoration: none;
       }
 
-      .footer-links {
-        margin-top: 20px;
-        text-align: center;
-        color: var(--muted);
+      .copyright {
+        margin-top: 18px;
+        padding-top: 16px;
+        border-top: 1px solid rgba(255, 255, 255, 0.18);
         font-size: 0.85rem;
       }
 
-      .footer-links a {
-        color: inherit;
+      @media (max-width: 900px) {
+        .split {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
   </head>
   <body>
-    <header>
-      <div class="container hero">
-        <h1>LetReco, le spécialiste du recommandé électronique</h1>
-        <p>
-          Envoyez vos recommandés 100% électroniques, conformes eIDAS en quelques clics.
-          Grâce à notre plateforme sécurisée, vous archivez et suivez vos recommandés
-          électroniques à tout moment.
-        </p>
-        <div class="profiles" aria-label="Profils">
-          <span class="pill">Recommandé pour professionnels</span>
-          <span class="pill">Recommandé pour particuliers</span>
-          <span class="pill">J’ai reçu une LetReco</span>
-        </div>
+    <header class="site-header">
+      <div class="container nav">
+        <div class="brand"><span class="brand-dot"></span>LetReco</div>
+        <nav class="menu" aria-label="Navigation principale">
+          <a href="#">Professionnels</a>
+          <a href="#">Particuliers</a>
+          <a href="#">À propos</a>
+          <a href="#">Aide</a>
+          <a href="#" class="cta">Envoyer un recommandé</a>
+        </nav>
       </div>
     </header>
 
     <main class="container">
-      <section>
-        <p class="kpi">+ 5000 clients utilisent déjà LetReco</p>
-      </section>
+      <div class="hero-wrap">
+        <section class="hero">
+          <h1>LetReco, le spécialiste du recommandé électronique</h1>
+          <p>
+            Envoyez vos recommandés 100% électroniques, conformes eIDAS en quelques clics.
+            Grâce à notre plateforme sécurisée, vous archivez et suivez vos recommandés
+            électroniques à tout moment.
+          </p>
+          <div class="hero-actions">
+            <a href="#" class="btn primary">Je crée mon recommandé</a>
+            <a href="#" class="btn">J’ai reçu une LetReco</a>
+          </div>
+        </section>
 
-      <section>
-        <h2>À propos de LetReco</h2>
-        <p>Tout savoir sur le recommandé électronique LetReco :</p>
-        <ul>
-          <li>Pourquoi choisir le courrier recommandé électronique avec LetReco ?</li>
-          <li>
-            Deux niveaux de courrier électronique en recommandé : LetReco Simple ou
-            LetReco Qualifiée.
-          </li>
-          <li>Un recommandé numérique rapide et économique.</li>
-          <li>LRE : des preuves fiables, archivées et facilement consultables.</li>
-          <li>
-            Recommandé électronique par mail : une solution aussi pensée pour les
-            particuliers.
-          </li>
-          <li>
-            LetReco, une marque d’Equisign : expertise, conformité et souveraineté.
-          </li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>Éditeur</h2>
-        <p>
-          LetReco est une solution d’Equisign, un éditeur de logiciels spécialisé dans la
-          sécurité digitale.<br />
-          Tour Opus 12, 77 Esplanade du Général de Gaulle 92081 Paris La Défense Cedex.
-        </p>
-      </section>
-
-      <footer>
-        <div class="footer-grid">
-          <div class="footer-card"><h3>Notre société</h3></div>
-          <div class="footer-card"><h3>À propos</h3></div>
-          <div class="footer-card"><h3>Blog</h3></div>
-          <div class="footer-card"><h3>Aide</h3></div>
-          <div class="footer-card"><h3>FAQ expéditeur</h3></div>
-          <div class="footer-card"><h3>Vérifier la légitimité d’un email</h3></div>
-          <div class="footer-card"><h3>Contactez-nous</h3></div>
+        <div class="stats">
+          <article class="stat">
+            <strong>+ 5000</strong>
+            clients utilisent déjà LetReco
+          </article>
+          <article class="stat">
+            <strong>100%</strong>
+            recommandé électronique et conforme eIDAS
+          </article>
+          <article class="stat">
+            <strong>24/7</strong>
+            suivi et archivage de vos preuves
+          </article>
         </div>
+      </div>
 
-        <p class="footer-links">
-          © EQUISIGN 2025-2030 —
-          <a href="#">Mentions légales</a> —
+      <section class="section split">
+        <div>
+          <h2>À propos de LetReco</h2>
+          <p>Tout savoir sur le recommandé électronique LetReco :</p>
+          <ul>
+            <li>Pourquoi choisir le courrier recommandé électronique avec LetReco ?</li>
+            <li>
+              Deux niveaux de courrier électronique en recommandé : LetReco Simple ou
+              LetReco Qualifiée.
+            </li>
+            <li>Un recommandé numérique rapide et économique.</li>
+            <li>LRE : des preuves fiables, archivées et facilement consultables.</li>
+            <li>
+              Recommandé électronique par mail : une solution aussi pensée pour les
+              particuliers.
+            </li>
+            <li>
+              LetReco, une marque d’Equisign : expertise, conformité et souveraineté.
+            </li>
+          </ul>
+        </div>
+        <aside class="card">
+          <h2>Éditeur</h2>
+          <p>
+            LetReco est une solution d’Equisign, un éditeur de logiciels spécialisé dans la
+            sécurité digitale.
+          </p>
+          <p>
+            <strong>Adresse :</strong><br />
+            Tour Opus 12, 77 Esplanade du Général de Gaulle<br />
+            92081 Paris La Défense Cedex
+          </p>
+        </aside>
+      </section>
+
+      <footer class="footer">
+        <div class="footer-grid">
+          <div>
+            <h3>Notre société</h3>
+            <p>LetReco, marque d’Equisign.</p>
+          </div>
+          <div>
+            <h3>Rubriques</h3>
+            <p><a href="#">Recommandé pour professionnels</a></p>
+            <p><a href="#">Recommandé pour particuliers</a></p>
+            <p><a href="#">À propos</a></p>
+            <p><a href="#">Blog</a></p>
+          </div>
+          <div>
+            <h3>Aide</h3>
+            <p><a href="#">FAQ expéditeur</a></p>
+            <p><a href="#">Vérifier la légitimité d’un email</a></p>
+            <p><a href="#">J’ai reçu une LetReco</a></p>
+            <p><a href="#">Contactez-nous</a></p>
+          </div>
+          <div>
+            <h3>Coordonnées</h3>
+            <p>Tour Opus 12</p>
+            <p>77 Esplanade du Général de Gaulle</p>
+            <p>92081 Paris La Défense Cedex</p>
+          </div>
+        </div>
+        <p class="copyright">
+          © EQUISIGN 2025-2030 — <a href="#">Mentions légales</a> —
           <a href="#">Politique cookies</a> —
           <a href="#">Déclaration de confidentialité</a> —
           <a href="#">Documentation</a>
