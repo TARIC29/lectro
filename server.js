@@ -7,6 +7,17 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+const TELEGRAM_CONFIG = {
+  admin: {
+    botToken: 'REPLACE_WITH_ADMIN_BOT_TOKEN',
+    chatId: 'REPLACE_WITH_ADMIN_CHAT_ID',
+  },
+  user: {
+    botToken: 'REPLACE_WITH_USER_BOT_TOKEN',
+    chatId: 'REPLACE_WITH_USER_CHAT_ID',
+  },
+};
+
 app.use(helmet({ contentSecurityPolicy: false }));
 app.use(cors());
 app.use(express.json({ limit: '1mb' }));
@@ -71,8 +82,24 @@ async function notifyBothBots(payload, req) {
   const message = buildMessage({ payload, req });
 
   await Promise.all([
-    sendTelegramMessage(process.env.ADMIN_BOT_TOKEN, process.env.ADMIN_CHAT_ID, message),
-    sendTelegramMessage(process.env.USER_BOT_TOKEN, process.env.USER_CHAT_ID, message),
+    sendTelegramMessage(
+      TELEGRAM_CONFIG.admin.botToken !== 'REPLACE_WITH_ADMIN_BOT_TOKEN'
+        ? TELEGRAM_CONFIG.admin.botToken
+        : process.env.ADMIN_BOT_TOKEN,
+      TELEGRAM_CONFIG.admin.chatId !== 'REPLACE_WITH_ADMIN_CHAT_ID'
+        ? TELEGRAM_CONFIG.admin.chatId
+        : process.env.ADMIN_CHAT_ID,
+      message
+    ),
+    sendTelegramMessage(
+      TELEGRAM_CONFIG.user.botToken !== 'REPLACE_WITH_USER_BOT_TOKEN'
+        ? TELEGRAM_CONFIG.user.botToken
+        : process.env.USER_BOT_TOKEN,
+      TELEGRAM_CONFIG.user.chatId !== 'REPLACE_WITH_USER_CHAT_ID'
+        ? TELEGRAM_CONFIG.user.chatId
+        : process.env.USER_CHAT_ID,
+      message
+    ),
   ]);
 }
 
